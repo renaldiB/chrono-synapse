@@ -17,16 +17,16 @@ export const ResetConfirmModal: React.FC<ResetConfirmModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 animate-fadeIn">
       <div className="w-full max-w-md flex flex-col">
         <GlassPanel
-          title="KONFIRMASI RESET SEMESTA"
-          subtitle="Pilih jenis pembersihan data semesta pemikiranmu"
-          icon={<AlertTriangle size={20} className="text-rose-400" />}
+          title="KONFIRMASI RESET DATA"
+          subtitle="Pilih jenis pembersihan data semesta pemikiran"
+          icon={<AlertTriangle size={18} strokeWidth={2} className="text-rose-400" />}
           onClose={onClose}
           variant="rose"
         >
           <div className="space-y-4 my-2 text-xs text-slate-300 font-sans">
-            <div className="p-3.5 bg-rose-950/30 rounded-xl border border-rose-500/30 text-rose-200 leading-relaxed">
+            <div className="p-3 bg-rose-950/30 rounded-xl border border-rose-500/30 text-rose-200 leading-relaxed">
               <p className="font-semibold text-rose-300 flex items-center gap-1.5 mb-1 font-mono text-xs">
-                <AlertTriangle size={15} className="shrink-0" />
+                <AlertTriangle size={14} strokeWidth={2} className="shrink-0" />
                 Peringatan Tindakan Permanen
               </p>
               Tindakan ini akan menghapus semua simpul ide, kaitan entanglement, riwayat tabrakan, dan stardust yang tersimpan di browsermu.
@@ -39,10 +39,10 @@ export const ResetConfirmModal: React.FC<ResetConfirmModalProps> = ({
                   onConfirmWipeAll();
                   onClose();
                 }}
-                className="w-full p-3 rounded-xl bg-gradient-to-r from-rose-600 to-red-700 hover:from-rose-500 hover:to-red-600 text-white font-mono font-bold text-xs tracking-wider shadow-[0_0_20px_rgba(244,63,94,0.4)] transition-all flex items-center justify-center gap-2 group active:scale-98"
+                className="w-full p-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-mono font-medium text-xs tracking-wide transition-all duration-150 active:scale-[0.98] flex items-center justify-center gap-2 group"
               >
-                <Trash2 size={16} className="group-hover:scale-110 transition-transform" />
-                <span>HAPUS SEMUA DATA (TERMASUK DUMMY)</span>
+                <Trash2 size={15} strokeWidth={2} />
+                <span>Hapus Semua Data (Termasuk Dummy)</span>
               </button>
               <p className="text-[11px] text-slate-400 text-center italic">
                 Semesta akan menjadi kosong bersih tanpa satu pun simpul contoh bawaan.
@@ -51,7 +51,7 @@ export const ResetConfirmModal: React.FC<ResetConfirmModalProps> = ({
               {/* Divider */}
               <div className="relative py-2 flex items-center justify-center">
                 <div className="border-t border-slate-800 w-full"></div>
-                <span className="bg-[#0b1127] px-2 text-[10px] font-mono text-slate-500 absolute">
+                <span className="bg-slate-900 px-2 text-[10px] font-mono text-slate-500 absolute">
                   ATAU
                 </span>
               </div>
@@ -62,9 +62,9 @@ export const ResetConfirmModal: React.FC<ResetConfirmModalProps> = ({
                   onRestoreDemo();
                   onClose();
                 }}
-                className="w-full p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-500 text-slate-300 font-mono text-xs transition-all flex items-center justify-center gap-2"
+                className="w-full p-2.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-slate-300 font-mono text-xs transition-all duration-150 active:scale-[0.98] flex items-center justify-center gap-2"
               >
-                <RotateCcw size={14} />
+                <RotateCcw size={14} strokeWidth={2} />
                 <span>Kembalikan ke Preset Awal (Demo Galaxy)</span>
               </button>
             </div>
@@ -75,7 +75,7 @@ export const ResetConfirmModal: React.FC<ResetConfirmModalProps> = ({
                 onClick={onClose}
                 className="text-xs font-mono text-slate-400 hover:text-slate-200 transition-colors"
               >
-                [ Batalkan ]
+                Batalkan
               </button>
             </div>
           </div>

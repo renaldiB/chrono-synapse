@@ -9,8 +9,9 @@ import { CreateNodeModal } from './components/HUD/CreateNodeModal';
 import { ExportModal } from './components/HUD/ExportModal';
 import { HelpModal } from './components/HUD/HelpModal';
 import { ResetConfirmModal } from './components/HUD/ResetConfirmModal';
+import { ErrorBoundary } from './components/Common/ErrorBoundary';
 import confetti from 'canvas-confetti';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, X } from 'lucide-react';
 
 import { CelestialNode, CosmicLink, Timeline, CollisionSynthesis, SingularityPurification } from './types/cosmos';
 import { INITIAL_NODES, INITIAL_LINKS, INITIAL_TIMELINES } from './data/presetGalaxies';
@@ -401,9 +402,10 @@ export function App() {
   };
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-[#03050c]">
-      {/* Optimized Scanline overlay with CSS will-change */}
-      <div className="absolute inset-0 scanline-grid pointer-events-none z-10 opacity-50" />
+    <ErrorBoundary>
+      <div className="relative w-screen h-screen overflow-hidden bg-[#030712]">
+        {/* Optimized Scanline overlay with CSS will-change */}
+        <div className="absolute inset-0 scanline-grid pointer-events-none z-10 opacity-30" />
 
       {/* Top Futuristic Navigation HUD */}
       <TopNav
@@ -473,6 +475,10 @@ export function App() {
           initialNodeB={colliderNodeB}
           onClose={() => setIsColliderOpen(false)}
           onManifestSynthesis={handleManifestSynthesis}
+          onOpenCreateNode={() => {
+            setIsColliderOpen(false);
+            setIsCreateNodeOpen(true);
+          }}
         />
       )}
 
@@ -483,6 +489,10 @@ export function App() {
           purifications={purifications}
           onClose={() => setIsSingularityOpen(false)}
           onPurifyNode={handlePurifyNode}
+          onOpenCreateNode={() => {
+            setIsSingularityOpen(false);
+            setIsCreateNodeOpen(true);
+          }}
         />
       )}
 
@@ -545,15 +555,15 @@ export function App() {
 
       {/* Celebratory Star Birth Toast Banner */}
       {starBirthToast && (
-        <div className="fixed top-18 sm:top-20 left-1/2 -translate-x-1/2 z-40 cosmic-glass px-4 py-3 rounded-2xl border border-amber-400/50 shadow-[0_0_30px_rgba(251,191,36,0.4)] flex items-center gap-3 animate-slideDown pointer-events-auto">
-          <div className="w-8 h-8 rounded-xl bg-amber-500/25 border border-amber-400/60 flex items-center justify-center text-amber-300 shrink-0">
-            <Sparkles size={16} />
+        <div className="fixed top-18 sm:top-20 left-1/2 -translate-x-1/2 z-40 bg-slate-950/90 px-4 py-3 rounded-2xl border border-slate-800 shadow-xl flex items-center gap-3 animate-slideDown pointer-events-auto backdrop-blur-md">
+          <div className="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
+            <Sparkles size={16} strokeWidth={2} />
           </div>
           <div>
-            <div className="text-[10px] font-mono text-amber-300 font-bold uppercase tracking-wider flex items-center gap-1.5">
-              <span>✨ Bintang Baru Terlahir di Semesta!</span>
+            <div className="text-[10px] font-mono text-amber-400 font-semibold uppercase tracking-wider flex items-center gap-1.5">
+              <span>Bintang Baru Terlahir di Semesta!</span>
             </div>
-            <div className="text-xs text-white font-semibold line-clamp-1 max-w-[200px] sm:max-w-xs">
+            <div className="text-xs text-white font-medium line-clamp-1 max-w-[200px] sm:max-w-xs">
               {starBirthToast.title}
             </div>
           </div>
@@ -562,19 +572,20 @@ export function App() {
               setSelectedNodeId(starBirthToast.id);
               setStarBirthToast(null);
             }}
-            className="ml-2 px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/40 border border-amber-400/60 text-amber-200 text-xs font-mono font-bold transition-all shrink-0 cursor-pointer"
+            className="ml-2 px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-mono font-medium transition-all duration-150 active:scale-[0.98] shrink-0 cursor-pointer"
           >
             Inspeksi
           </button>
           <button
             onClick={() => setStarBirthToast(null)}
-            className="text-slate-400 hover:text-white text-xs px-1.5 py-1 cursor-pointer"
+            className="text-slate-400 hover:text-white p-1 rounded-lg transition-colors cursor-pointer"
           >
-            ✕
+            <X size={14} strokeWidth={2} />
           </button>
         </div>
       )}
-    </div>
+      </div>
+    </ErrorBoundary>
   );
 }
 

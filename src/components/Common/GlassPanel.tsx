@@ -8,7 +8,7 @@ interface GlassPanelProps {
   onClose?: () => void;
   children: React.ReactNode;
   className?: string;
-  variant?: 'cyan' | 'purple' | 'rose' | 'amber';
+  variant?: 'cyan' | 'purple' | 'rose' | 'amber' | 'sky';
 }
 
 export const GlassPanel: React.FC<GlassPanelProps> = ({
@@ -20,38 +20,48 @@ export const GlassPanel: React.FC<GlassPanelProps> = ({
   className = '',
   variant = 'cyan',
 }) => {
-  const borderVariants = {
-    cyan: 'border-cyan-500/30 shadow-[0_0_25px_-5px_rgba(6,182,212,0.25)]',
-    purple: 'border-purple-500/30 shadow-[0_0_25px_-5px_rgba(168,85,247,0.25)]',
-    rose: 'border-rose-500/30 shadow-[0_0_25px_-5px_rgba(244,63,94,0.25)]',
-    amber: 'border-amber-500/30 shadow-[0_0_25px_-5px_rgba(245,158,11,0.25)]',
-  };
-
-  const headerColors = {
-    cyan: 'text-cyan-400',
-    purple: 'text-purple-400',
-    rose: 'text-rose-400',
-    amber: 'text-amber-400',
-  };
+  const isDanger = variant === 'rose';
 
   return (
-    <div className={`cosmic-glass rounded-2xl p-5 border ${borderVariants[variant]} ${className}`}>
+    <div
+      className={`rounded-2xl p-5 border bg-slate-900/95 shadow-xl transition-all duration-150 ${
+        isDanger ? 'border-rose-500/30' : 'border-slate-800'
+      } ${className}`}
+    >
       {(title || onClose) && (
         <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-slate-800/80">
           <div className="flex items-center space-x-3">
-            {icon && <div className={`${headerColors[variant]} flex items-center justify-center`}>{icon}</div>}
+            {icon && (
+              <div
+                className={`flex items-center justify-center p-2 rounded-xl border ${
+                  isDanger
+                    ? 'bg-rose-500/10 border-rose-500/20 text-rose-400'
+                    : 'bg-sky-500/10 border-sky-500/20 text-sky-400'
+                }`}
+              >
+                {icon}
+              </div>
+            )}
             <div>
-              {title && <h3 className="font-bold text-sm tracking-wider uppercase text-slate-100 font-mono">{title}</h3>}
-              {subtitle && <p className="text-xs text-slate-400 mt-0.5">{subtitle}</p>}
+              {title && (
+                <h3 className="font-semibold text-sm tracking-normal text-slate-100 font-sans">
+                  {title}
+                </h3>
+              )}
+              {subtitle && (
+                <p className="text-xs font-normal text-slate-400 mt-0.5 leading-relaxed">
+                  {subtitle}
+                </p>
+              )}
             </div>
           </div>
           {onClose && (
             <button
               onClick={onClose}
-              className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800/60 transition-colors"
+              className="text-slate-400 hover:text-slate-200 p-1.5 rounded-lg hover:bg-slate-800/60 active:scale-95 transition-all duration-150"
               title="Tutup"
             >
-              <X size={18} />
+              <X size={16} strokeWidth={2} />
             </button>
           )}
         </div>

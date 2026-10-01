@@ -59,9 +59,9 @@ export const ExportModal: React.FC<ExportModalProps> = ({
   };
 
   const handleExportMarkdown = () => {
-    let md = `# 🌌 CHRONO-SYNAPSE // PETA PENGETAHUAN KOSMIK\n`;
+    let md = `# CHRONO-SYNAPSE // PETA PENGETAHUAN KOSMIK\n`;
     md += `*Diekspor pada: ${new Date().toLocaleString('id-ID')}*\n\n`;
-    md += `**Total Entitas Kosmik**: ${nodes.length} | **Total Relasi Entanglement**: ${links.length} | **Stardust**: ${stardustTotal} ✧\n\n`;
+    md += `**Total Entitas Kosmik**: ${nodes.length} | **Total Relasi Entanglement**: ${links.length} | **Stardust**: ${stardustTotal}\n\n`;
     md += `---\n\n`;
 
     // Group by Type
@@ -69,7 +69,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
     types.forEach(t => {
       const group = nodes.filter(n => n.type === t);
       if (group.length > 0) {
-        md += `## 🌟 ${t.toUpperCase()}S (${group.length})\n\n`;
+        md += `## ${t.toUpperCase()}S (${group.length})\n\n`;
         group.forEach(n => {
           md += `### ${n.title}\n`;
           md += `- **Tipe**: \`${n.type}\` | **Massa**: \`${n.mass} M☉\` | **Frekuensi**: \`${n.frequency} Hz\`\n`;
@@ -82,7 +82,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
     });
 
     if (syntheses.length > 0) {
-      md += `## ⚡ HASIL TABRAKAN THOUGHT COLLIDER\n\n`;
+      md += `## HASIL TABRAKAN THOUGHT COLLIDER\n\n`;
       syntheses.forEach(s => {
         md += `### ${s.synthesisTitle}\n`;
         md += `*Tabrakan antara "${s.nodeA.title}" dan "${s.nodeB.title}"*\n\n`;
@@ -133,24 +133,24 @@ export const ExportModal: React.FC<ExportModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 animate-fadeIn">
       <div className="w-full max-w-lg max-h-[90vh] flex flex-col">
         <GlassPanel
-          title="EKSPOR & ARSIP SEMESTA KOSMIK"
-          subtitle="Simpan peta pemikiran dalam format Markdown atau JSON lengkap, dan pulihkan kapan saja."
-          icon={<Download size={20} />}
+          title="EKSPOR & ARSIP DATA"
+          subtitle="Simpan peta pemikiran dalam format Markdown atau JSON terstruktur, dan pulihkan kapan saja."
+          icon={<Download size={18} strokeWidth={2} />}
           onClose={onClose}
-          variant="cyan"
+          variant="sky"
         >
           <div className="space-y-3 my-2">
             {/* Export JSON */}
             <button
               onClick={handleExportJSON}
-              className="w-full p-3.5 rounded-xl bg-slate-900/60 hover:bg-slate-900 border border-cyan-500/30 hover:border-cyan-400 text-left transition-all flex items-center justify-between group"
+              className="w-full p-3.5 rounded-xl bg-slate-900/60 hover:bg-slate-900 border border-slate-800 hover:border-sky-500/40 text-left transition-all duration-150 active:scale-[0.98] flex items-center justify-between group"
             >
               <div className="flex items-center space-x-3">
-                <div className="w-9 h-9 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center">
-                  <Download size={18} />
+                <div className="w-9 h-9 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center border border-sky-500/20">
+                  <Download size={18} strokeWidth={2} />
                 </div>
                 <div>
-                  <h4 className="font-mono text-xs font-bold text-slate-100 group-hover:text-cyan-300">
+                  <h4 className="font-mono text-xs font-semibold text-slate-100 group-hover:text-sky-300 transition-colors">
                     Ekspor Semesta Penuh (JSON)
                   </h4>
                   <p className="text-[11px] text-slate-400 mt-0.5">
@@ -163,18 +163,18 @@ export const ExportModal: React.FC<ExportModalProps> = ({
             {/* Export Markdown */}
             <button
               onClick={handleExportMarkdown}
-              className="w-full p-3.5 rounded-xl bg-slate-900/60 hover:bg-slate-900 border border-purple-500/30 hover:border-purple-400 text-left transition-all flex items-center justify-between group"
+              className="w-full p-3.5 rounded-xl bg-slate-900/60 hover:bg-slate-900 border border-slate-800 hover:border-slate-700 text-left transition-all duration-150 active:scale-[0.98] flex items-center justify-between group"
             >
               <div className="flex items-center space-x-3">
-                <div className="w-9 h-9 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center">
-                  <FileText size={18} />
+                <div className="w-9 h-9 rounded-lg bg-slate-800 text-slate-300 flex items-center justify-center border border-slate-700">
+                  <FileText size={18} strokeWidth={2} />
                 </div>
                 <div>
-                  <h4 className="font-mono text-xs font-bold text-slate-100 group-hover:text-purple-300">
+                  <h4 className="font-mono text-xs font-semibold text-slate-100 group-hover:text-slate-200 transition-colors">
                     Ekspor Catatan Pengetahuan (Markdown)
                   </h4>
                   <p className="text-[11px] text-slate-400 mt-0.5">
-                    Format rapi untuk diimpor ke Obsidian, Notion, Logseq, atau jurnal pribadi.
+                    Format terstruktur untuk Obsidian, Notion, Logseq, atau arsip pribadi.
                   </p>
                 </div>
               </div>
@@ -183,14 +183,14 @@ export const ExportModal: React.FC<ExportModalProps> = ({
             {/* Import JSON */}
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="w-full p-3.5 rounded-xl bg-slate-900/60 hover:bg-slate-900 border border-slate-700 hover:border-slate-500 text-left transition-all flex items-center justify-between group"
+              className="w-full p-3.5 rounded-xl bg-slate-900/60 hover:bg-slate-900 border border-slate-800 hover:border-slate-700 text-left transition-all duration-150 active:scale-[0.98] flex items-center justify-between group"
             >
               <div className="flex items-center space-x-3">
-                <div className="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
-                  <Upload size={18} />
+                <div className="w-9 h-9 rounded-lg bg-slate-800 text-slate-300 flex items-center justify-center border border-slate-700">
+                  <Upload size={18} strokeWidth={2} />
                 </div>
                 <div>
-                  <h4 className="font-mono text-xs font-bold text-slate-100 group-hover:text-emerald-300">
+                  <h4 className="font-mono text-xs font-semibold text-slate-100 group-hover:text-slate-200 transition-colors">
                     Impor Semesta Cadangan (JSON)
                   </h4>
                   <p className="text-[11px] text-slate-400 mt-0.5">
@@ -211,27 +211,27 @@ export const ExportModal: React.FC<ExportModalProps> = ({
             <div className="pt-3 border-t border-slate-800 space-y-2">
               <button
                 onClick={() => {
-                  if (confirm('PERINGATAN: Ini akan MENGHAPUS SEMUA DATA termasuk data dummy/contoh bawaan secara permanen. Kanvas akan kosong bersih. Lanjutkan?')) {
+                  if (confirm('PERINGATAN: Tindakan ini akan menghapus semua data termasuk data contoh bawaan secara permanen. Kanvas akan kosong. Lanjutkan?')) {
                     onWipeAll();
                     onClose();
                   }
                 }}
-                className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-rose-600 to-red-700 hover:from-rose-500 hover:to-red-600 text-white font-mono text-xs font-bold flex items-center justify-center space-x-2 transition-all shadow-md active:scale-98"
+                className="w-full py-2.5 px-4 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-mono text-xs font-medium flex items-center justify-center space-x-2 transition-all duration-150 active:scale-[0.98]"
               >
-                <Trash2 size={14} />
+                <Trash2 size={14} strokeWidth={2} />
                 <span>Reset Total (Hapus Semua Termasuk Data Dummy)</span>
               </button>
 
               <button
                 onClick={() => {
-                  if (confirm('Mereset ke Preset Galaksi Awal akan memulihkan data contoh/dummy bawaan. Lanjutkan?')) {
+                  if (confirm('Mereset ke Preset Galaksi Awal akan memulihkan data contoh bawaan. Lanjutkan?')) {
                     onResetToDefault();
                     onClose();
                   }
                 }}
-                className="w-full py-2 px-4 rounded-xl border border-slate-700 hover:border-slate-500 bg-slate-900/60 hover:bg-slate-800 text-slate-300 font-mono text-xs flex items-center justify-center space-x-2 transition-all"
+                className="w-full py-2 px-4 rounded-xl border border-slate-800 hover:border-slate-700 bg-slate-900/60 hover:bg-slate-800 text-slate-300 font-mono text-xs flex items-center justify-center space-x-2 transition-all duration-150 active:scale-[0.98]"
               >
-                <RotateCcw size={13} />
+                <RotateCcw size={13} strokeWidth={2} />
                 <span>Pulihkan Galaksi Contoh Awal (Demo Galaxy)</span>
               </button>
             </div>

@@ -492,7 +492,7 @@ export const CelestialCanvas: React.FC<CelestialCanvasProps> = ({
             ctx.font = 'bold 11px "JetBrains Mono", monospace';
             ctx.fillStyle = '#f43f5e';
             ctx.textAlign = 'center';
-            ctx.fillText('⚡ RELEASE TO PURIFY', dNode.x / 2, dNode.y / 2 - 10);
+            ctx.fillText('LEPASKAN UNTUK PURIFIKASI', dNode.x / 2, dNode.y / 2 - 10);
           }
         }
       }
@@ -690,23 +690,23 @@ export const CelestialCanvas: React.FC<CelestialCanvasProps> = ({
       {/* Empty State Overlay when no nodes exist */}
       {nodes.length === 0 && (
         <div className="absolute inset-0 pointer-events-none flex items-center justify-center p-4 z-20 animate-fadeIn">
-          <div className="cosmic-glass p-6 sm:p-8 rounded-3xl border border-dashed border-cyan-500/40 text-center max-w-md pointer-events-auto backdrop-blur-xl shadow-2xl">
-            <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.3)]">
-              <Sparkles size={28} />
+          <div className="bg-slate-950/90 p-6 sm:p-8 rounded-2xl border border-slate-800 text-center max-w-md pointer-events-auto backdrop-blur-md shadow-2xl">
+            <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
+              <Sparkles size={24} strokeWidth={2} />
             </div>
-            <h3 className="font-mono font-bold text-slate-100 text-sm sm:text-base tracking-wider mb-2">
-              SEMESTA MASIH KOSONG
+            <h3 className="font-mono font-semibold text-slate-100 text-sm tracking-wide mb-1.5">
+              SEMESTA KOSONG
             </h3>
             <p className="text-slate-400 text-xs leading-relaxed mb-5">
-              Semua data termasuk sampel dummy telah dibersihkan. Mulailah petualangan barumu dengan menciptakan bintang pemikiran pertama!
+              Semua data telah dibersihkan. Mulai konstelasi baru dengan menciptakan simpul pemikiran pertama.
             </p>
             {onOpenCreateNode && (
               <button
                 onClick={onOpenCreateNode}
-                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-mono text-xs font-bold shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all active:scale-95 inline-flex items-center gap-2 cursor-pointer"
+                className="px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-mono text-xs font-medium transition-all duration-150 active:scale-[0.98] inline-flex items-center gap-2 cursor-pointer"
               >
-                <Plus size={16} />
-                <span>+ Buat Simpul Pertama</span>
+                <Plus size={15} strokeWidth={2} />
+                <span>Buat Simpul Pertama</span>
               </button>
             )}
           </div>
